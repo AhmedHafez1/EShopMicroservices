@@ -1,12 +1,12 @@
-﻿using Catalog.API.Models;
-using MediatR;
+﻿using BuildingBlocks.CQRS;
+using Catalog.API.Models;
 
 namespace Catalog.API.Products.CreateProduct
 {
-    public record CreateProductCommand(string Name, string Description, List<string> Category, string ImagePath, decimal Price) : IRequest<CreateProductResult>;
+    public record CreateProductCommand(string Name, string Description, List<string> Category, string ImagePath, decimal Price) : ICommand<CreateProductResult>;
     public record CreateProductResult(Guid Id);
 
-    public class CreateProductHandler : IRequestHandler<CreateProductCommand, CreateProductResult>
+    public class CreateProductHandler : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
@@ -21,7 +21,7 @@ namespace Catalog.API.Products.CreateProduct
 
             // Create product in db and save changes
 
-            return new CreateProductResult(new Guid());
+            return new CreateProductResult(Guid.NewGuid());
         }
     }
 }
