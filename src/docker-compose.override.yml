@@ -5,7 +5,7 @@ services:
     container_name: catalogdb
     environment: 
      - POSTGRES_USER=postgres
-     - POSTGRES_PASSWORD=postgres
+     - POSTGRES_PASSWORD=ghaza
      - POSTGRES_DB=CatalogDb
     restart: always
     ports:
