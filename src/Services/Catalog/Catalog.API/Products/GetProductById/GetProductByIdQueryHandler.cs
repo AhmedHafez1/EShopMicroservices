@@ -8,7 +8,12 @@ namespace Catalog.API.Products.GetProductById
         public async Task<GetProductByIdResult> Handle(GetProductByIdQuery query, CancellationToken cancellationToken)
         {
             logger.LogInformation($"Handler GetProductByIdQueryHandler has been called with id {query.Id}");
-            var product = await session.Query<Product>().FirstOrDefaultAsync(p => p.Id == query.Id);
+            var product = await session.LoadAsync<Product>(query.Id, cancellationToken);
+
+            if (product is null)
+            {
+                throw new NotFoundException("Product not Found!");
+            }
 
             return new GetProductByIdResult(product!);
         }

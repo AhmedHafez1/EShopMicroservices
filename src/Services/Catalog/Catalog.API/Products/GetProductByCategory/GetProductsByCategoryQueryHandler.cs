@@ -9,8 +9,8 @@ namespace Catalog.API.Products.GetProductByCategory
         {
             logger.LogInformation($"Handler GetProductByCategoryQueryHandler has been called with category {query.Category}");
             var product = await session.Query<Product>()
-                .Where(p => p.Category.Any(c => c == query.Category))
-                .ToListAsync();
+                .Where(p => p.Category.Contains(query.Category))
+                .ToListAsync(cancellationToken);
 
             return new GetProductsByCategoryResult(product!);
         }
