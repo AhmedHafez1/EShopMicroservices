@@ -15,6 +15,7 @@
             .WithName("Delete Products")
             .Produces<DeleteProductResponse>(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status400BadRequest)
+            .ProducesProblem(StatusCodes.Status404NotFound)
             .WithDescription("Delete Products")
             .WithSummary("Delete Products");
         }

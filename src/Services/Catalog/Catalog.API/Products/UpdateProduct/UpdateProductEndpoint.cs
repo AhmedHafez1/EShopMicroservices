@@ -17,6 +17,7 @@
             .WithName("Update Products")
             .Produces<UpdateProductResponse>(StatusCodes.Status200OK)
             .ProducesProblem(StatusCodes.Status400BadRequest)
+            .ProducesProblem(StatusCodes.Status404NotFound)
             .WithDescription("Update Products")
             .WithSummary("Update Products");
         }
