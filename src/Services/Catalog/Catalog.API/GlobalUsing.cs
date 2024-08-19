@@ -6,3 +6,5 @@ global using Marten;
 global using Catalog.API.Models;
 global using BuildingBlocks.CQRS;
 global using BuildingBlocks.Exceptions;
+global using BuildingBlocks.Behaviors;
+global using BuildingBlocks.Exceptions.Handler;
