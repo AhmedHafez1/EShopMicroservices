@@ -1,7 +1,5 @@
 
 using BuildingBlocks.Behaviors;
-using Marten;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
