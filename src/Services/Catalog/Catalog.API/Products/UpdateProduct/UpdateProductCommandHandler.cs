@@ -31,7 +31,7 @@ namespace Catalog.API.Products.UpdateProduct
             product.Name = command.Name;
             product.Description = command.Description;
             product.Category = command.Category;
-            product.ImagePath = command.ImagePath;
+            product.ImageFile = command.ImagePath;
             product.Price = command.Price;
 
             session.Update(product);

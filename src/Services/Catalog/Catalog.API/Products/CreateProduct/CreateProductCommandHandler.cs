@@ -27,7 +27,7 @@ namespace Catalog.API.Products.CreateProduct
                 Name = command.Name,
                 Description = command.Description,
                 Category = command.Category,
-                ImagePath = command.ImagePath,
+                ImageFile = command.ImagePath,
                 Price = command.Price,
             };
 

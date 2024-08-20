@@ -1,5 +1,3 @@
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the DI container
@@ -20,7 +18,11 @@ builder.Services.AddMarten(opts =>
     opts.Connection(builder.Configuration.GetConnectionString("Default")!);
 }).UseLightweightSessions();
 
+if (builder.Environment.IsDevelopment())
+    builder.Services.InitializeMartenWith<CatalogInitialData>();
+
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 
 var app = builder.Build();
 
