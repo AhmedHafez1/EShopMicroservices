@@ -1,6 +1,3 @@
-using BuildingBlocks.Behaviors;
-using FluentValidation;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the DI container

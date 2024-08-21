@@ -1,7 +1,4 @@
-﻿using Basket.API.Models;
-using BuildingBlocks.CQRS;
-
-namespace Basket.API.Basket.GetBasket
+﻿namespace Basket.API.Basket.GetBasket
 {
     public record GetBasketQuery(string UserId) : IQuery<GetBasketResult>;
     public record GetBasketResult(ShoppingCart Cart);
