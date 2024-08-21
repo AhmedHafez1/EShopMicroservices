@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace Catalog.API.Products.CreateProduct
+﻿namespace Catalog.API.Products.CreateProduct
 {
     public record CreateProductCommand(string Name, string Description, List<string> Category, string ImagePath, decimal Price) : ICommand<CreateProductResult>;
     public record CreateProductResult(Guid Id);
