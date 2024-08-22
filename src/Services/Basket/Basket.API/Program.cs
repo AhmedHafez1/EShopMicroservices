@@ -10,6 +10,12 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
 
+builder.Services.AddMarten(opts =>
+{
+    opts.Connection(builder.Configuration.GetConnectionString("Default")!);
+    opts.Schema.For<ShoppingCart>().Identity(basket => basket.UserName);
+}).UseLightweightSessions();
+
 builder.Services.AddCarter();
 
 var app = builder.Build();
