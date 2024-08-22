@@ -10,13 +10,11 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
 
-builder.Services.AddValidatorsFromAssembly(assemply);
-
 builder.Services.AddCarter();
 
 var app = builder.Build();
 
 // Configure http request pipeline
-
+app.MapCarter();
 
 app.Run();

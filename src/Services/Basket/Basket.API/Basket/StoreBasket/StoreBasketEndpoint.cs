@@ -7,19 +7,19 @@ namespace Basket.API.Basket.StoreBasket
     {
         public void AddRoutes(IEndpointRouteBuilder app)
         {
-            app.MapPost("basket/{userId}", async (string userId, StoreBasketRequest request, ISender sender) =>
+            app.MapPost("basket", async (StoreBasketRequest request, ISender sender) =>
             {
                 var command = request.Adapt<StoreBasketCommand>();
                 var result = await sender.Send(command);
                 var response = result.Adapt<StoreBasketResponse>();
 
-                return Results.Created($"/basket/{userId}", response);
+                return Results.Created($"basket/{response.UserName}", response);
             })
-            .WithName("Store Product")
+            .WithName("Store Basket")
             .Produces<StoreBasketResponse>(StatusCodes.Status201Created)
             .ProducesProblem(StatusCodes.Status400BadRequest)
-            .WithDescription("Store Product")
-            .WithSummary("Store Product");
+            .WithDescription("Store Basket")
+            .WithSummary("Store Basket");
         }
     }
 }
