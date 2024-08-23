@@ -2,7 +2,7 @@
 {
     public class BasketRepository(IDocumentSession session) : IBasketRepository
     {
-        public async Task<ShoppingCart> GetBasket(string userName, CancellationToken cancellationToken = default)
+        public async Task<ShoppingCart> GetBasketAsync(string userName, CancellationToken cancellationToken = default)
         {
             var basket = await session.LoadAsync<ShoppingCart>(userName);
             if (basket is null)
@@ -13,7 +13,7 @@
             return basket;
         }
 
-        public async Task<ShoppingCart> StoreBasket(ShoppingCart basket, CancellationToken cancellationToken = default)
+        public async Task<ShoppingCart> StoreBasketAsync(ShoppingCart basket, CancellationToken cancellationToken = default)
         {
             session.Store(basket);
             await session.SaveChangesAsync();
@@ -21,11 +21,11 @@
             return basket;
         }
 
-        public async Task<bool> DeleteBasket(string userName, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteBasketAsync(string userName, CancellationToken cancellationToken = default)
         {
-            var basket = await GetBasket(userName, cancellationToken);
+            var basket = await GetBasketAsync(userName, cancellationToken);
             session.Delete(basket);
-
+            await session.SaveChangesAsync();
             return true;
         }
 

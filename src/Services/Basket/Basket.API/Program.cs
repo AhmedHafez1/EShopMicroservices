@@ -18,9 +18,14 @@ builder.Services.AddMarten(opts =>
 
 builder.Services.AddCarter();
 
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 var app = builder.Build();
 
 // Configure http request pipeline
+app.UseExceptionHandler(opt => { });
 app.MapCarter();
 
 app.Run();
