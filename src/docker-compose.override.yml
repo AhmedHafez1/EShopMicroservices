@@ -32,6 +32,12 @@ services:
       - "8080:8080"
     depends_on:
       - catalogdb
+  
+  distributedcache:
+    container_name: distributedcache
+    restart: always
+    ports:
+     - "6379:6379"
 
   catalog.api:
     environment:
