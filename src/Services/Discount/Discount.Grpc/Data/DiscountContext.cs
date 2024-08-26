@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Discount.Grpc.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Discount.Grpc.Data
 {
@@ -7,5 +8,7 @@ namespace Discount.Grpc.Data
         public DiscountContext(DbContextOptions options) : base(options)
         {
         }
+
+        public DbSet<Coupon> Coupons { get; set; }
     }
 }
