@@ -11,5 +11,6 @@ builder.Services.AddDbContext<DiscountContext>(opt => opt.UseSqlite(builder.Conf
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseMigrations();
 app.MapGrpcService<DiscountServices>();
 app.Run();
