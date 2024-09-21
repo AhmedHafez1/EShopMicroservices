@@ -8,7 +8,10 @@ services:
     image: postgres
   
   distributedcache:
-    image: redis
+    image: redis  
+    
+  orderdb:
+    image: mcr.microsoft.com/mssql/server
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
