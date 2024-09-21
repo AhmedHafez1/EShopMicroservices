@@ -53,6 +53,7 @@ namespace Ordering.Infrastructure.Data.Configurations
                 paymentBuilder.Property(p => p.CardNumber).HasMaxLength(24).IsRequired();
                 paymentBuilder.Property(p => p.CVV).HasMaxLength(3);
                 paymentBuilder.Property(p => p.Expiration).HasMaxLength(10);
+                paymentBuilder.Property(p => p.PaymentMethod);
             });
 
             builder.Property(o => o.OrderStatus)
