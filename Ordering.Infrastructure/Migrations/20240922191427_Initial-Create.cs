@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Ordering.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,6 +65,7 @@ namespace Ordering.Infrastructure.Migrations
                     Payment_CardName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Payment_CardNumber = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false),
                     Payment_Expiration = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Payment_PaymentMethod = table.Column<int>(type: "int", nullable: false),
                     ShippingAddress_AddressLine = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ShippingAddress_Country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ShippingAddress_EmailAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -97,7 +98,6 @@ namespace Ordering.Infrastructure.Migrations
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OrderId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -112,11 +112,6 @@ namespace Ordering.Infrastructure.Migrations
                         principalTable: "Orders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_OrderItems_Orders_OrderId1",
-                        column: x => x.OrderId1,
-                        principalTable: "Orders",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_OrderItems_Products_ProductId",
                         column: x => x.ProductId,
@@ -135,11 +130,6 @@ namespace Ordering.Infrastructure.Migrations
                 name: "IX_OrderItems_OrderId",
                 table: "OrderItems",
                 column: "OrderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderItems_OrderId1",
-                table: "OrderItems",
-                column: "OrderId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_ProductId",

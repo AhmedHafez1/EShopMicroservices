@@ -13,8 +13,8 @@ using Ordering.Infrastructure.Data;
 namespace Ordering.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240921052046_payment_method")]
-    partial class payment_method
+    [Migration("20240922191427_Initial-Create")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -236,9 +236,6 @@ namespace Ordering.Infrastructure.Migrations
                     b.Property<Guid>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("OrderId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -251,8 +248,6 @@ namespace Ordering.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("OrderId1");
 
                     b.HasIndex("ProductId");
 
@@ -301,14 +296,10 @@ namespace Ordering.Infrastructure.Migrations
             modelBuilder.Entity("Ordering.Domain.Models.OrderItem", b =>
                 {
                     b.HasOne("Ordering.Domain.Models.Order", null)
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Ordering.Domain.Models.Order", null)
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId1");
 
                     b.HasOne("Ordering.Domain.Models.Product", null)
                         .WithMany()

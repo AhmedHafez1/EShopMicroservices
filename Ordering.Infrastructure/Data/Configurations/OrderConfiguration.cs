@@ -1,8 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Ordering.Domain.Enums;
-using Ordering.Domain.Models;
-using Ordering.Domain.ValueObjects;
 
 namespace Ordering.Infrastructure.Data.Configurations
 {
@@ -17,8 +14,8 @@ namespace Ordering.Infrastructure.Data.Configurations
             builder.HasOne<Customer>().WithMany()
                 .HasForeignKey(x => x.CustomerId)
                 .IsRequired();
-            builder.HasMany<OrderItem>().WithOne()
-                .HasForeignKey(oi => oi.OrderId);
+
+            builder.Property(x => x.TotalPrice);
 
             builder.ComplexProperty(
                 x => x.OrderName, nameBuilder => nameBuilder.Property(on => on.Value)
