@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Ordering.Infrastructure.Extensions
@@ -45,5 +46,9 @@ namespace Ordering.Infrastructure.Extensions
                 await context.SaveChangesAsync();
             }
         }
+
+        public static bool HasOwnEntitiesChanged(this EntityEntry entry) => entry.References.Any(r =>
+        r.TargetEntry != null && r.TargetEntry.Metadata.IsOwned()
+        && (r.TargetEntry.State == EntityState.Added || r.TargetEntry.State == EntityState.Modified));
     }
 }
